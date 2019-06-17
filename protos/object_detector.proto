@@ -1,0 +1,37 @@
+// Defenition for Base iterface to Air
+// Detection happens in the  Base (now) in real time and detected object bounding box
+// relative to the frame is sent. NDN Air uses this to adjust the camera so that the
+// detected object is in the center of the feild of view
+// Currenlty only one object is considered as supported
+
+syntax = "proto3";
+
+package nokia.ndn;
+
+message BoundingBox{
+  //Top left (X1,Y1) Bottom Right (X2,Y2)
+       int32 X1 = 1;
+       int32 Y1 = 2;
+       int32 X2 = 3;
+       int32 Y2 = 4;
+}
+
+
+message Output {
+  int32 response = 1;
+  BoundingBox bounding_box = 2 ;
+  //for multiple detections in a frame use below
+  //repeated Detection detection = 3;
+
+ }
+
+message Settings {
+    int32 drone_id = 1;
+    string video_url = 2; 
+    string tf_server = 3;
+    string class_name = 4;
+}
+
+service ObjectTracking {
+  rpc start_tracking(Settings) returns (stream Output);
+}
