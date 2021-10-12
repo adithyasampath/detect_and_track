@@ -1,6 +1,6 @@
 grpcio==1.18   
 grpcio-tools  
-opencv-python==3.4.5.20  
+opencv-python==3.4.7.28  
 opencv-contrib-python==3.4.5.20  
 protobuf  
 imutils  
